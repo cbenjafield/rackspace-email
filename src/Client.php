@@ -121,7 +121,7 @@ class Client
      * @return mixed
      * @throws GuzzleException
      */
-    protected function getResponse(
+    public function getResponse(
         string $uri = null,
         string $method = 'GET',
         array $data = [],
@@ -137,6 +137,6 @@ class Client
             $options
         );
 
-        return json_decode($request->getBody()->getContents())->result;
+        return json_decode($request->getBody()->getContents(), true);
     }
 }
