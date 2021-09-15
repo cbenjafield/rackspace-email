@@ -1,0 +1,27 @@
+{
+    "name": "cbenjafield/rackspace-email",
+    "authors": [
+        {
+            "name": "Charlie Benjafield",
+            "email": "me@cbenjafield.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Benjafield\\Rackspace\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "require": {
+        "php": "^7.3|^8.0",
+        "guzzlehttp/guzzle": "^7.0.1",
+        "ext-json": "*"
+    }
+}
