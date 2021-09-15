@@ -15,7 +15,7 @@ class ResourceTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->rackspace = Rackspace::init('test_key', 'test_secret');
+        $this->rackspace = Rackspace::fromEnvFile(__DIR__ . '/.env');
     }
 
     /** @test */
