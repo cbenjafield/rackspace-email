@@ -91,37 +91,40 @@ class Rackspace
     }
 
     /**
-     * Create a new domains resource.
+     * Create a new domain resource.
      *
+     * @param  array  $attributes
      * @return DomainResource
      */
-    public function domains(): DomainResource
+    public function domains(array $attributes = []): DomainResource
     {
-        return new DomainResource($this->client);
+        return new DomainResource($this->client, $attributes);
     }
 
     /**
-     * Create a new mailboxes resource.
+     * Create a new mailbox resource.
      *
+     * @param  array  $attributes
      * @return MailboxResource
      */
-    public function mailboxes(): MailboxResource
+    public function mailboxes(array $attributes = []): MailboxResource
     {
-        return new MailboxResource($this->client);
+        return new MailboxResource($this->client, $attributes);
     }
 
     /**
-     * Create a new aliases resource.
+     * Create a new alias resource.
      *
+     * @param  array  $attributes
      * @return AliasResource
      */
-    public function aliases(): AliasResource
+    public function aliases(array $attributes = []): AliasResource
     {
-        return new AliasResource($this->client);
+        return new AliasResource($this->client, $attributes);
     }
 
     /**
-     * Create a new companies resource.
+     * Create a new customer resource.
      *
      * @return CustomerResource
      */

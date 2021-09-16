@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use Benjafield\Rackspace\Objects\Customer;
 use Benjafield\Rackspace\Objects\Domain;
 use Benjafield\Rackspace\Rackspace;
 use GuzzleHttp\Exception\GuzzleException;
@@ -15,6 +16,7 @@ class ResourceTest extends TestCase
 {
     protected $rackspace;
     protected $customerId = 12345678;
+    protected $domain = 'example.com';
 
     protected function setUp(): void
     {
@@ -54,8 +56,10 @@ class ResourceTest extends TestCase
         $this->assertTrue(
             is_array(
                 $this->rackspace
-                    ->domains()
-                    ->all($this->customerId)
+                    ->domains([
+                        'customerId' => $this->customerId,
+                    ])
+                    ->all()
             )
         );
     }
@@ -69,8 +73,57 @@ class ResourceTest extends TestCase
         $this->assertInstanceOf(
             Domain::class,
             $this->rackspace
-                ->domains()
-                ->find($this->customerId, 'example.com')
+                ->domains([
+                    'customerId' => $this->customerId,
+                ])
+                ->find($this->domain)
+        );
+    }
+
+    /**
+     * @test
+     * @throws GuzzleException
+     */
+    function it_returns_a_list_of_customers()
+    {
+        $this->assertTrue(
+            is_object(
+                $this->rackspace
+                    ->customers()
+                    ->all()
+            )
+        );
+    }
+
+    /**
+     * @test
+     * @throws GuzzleException
+     */
+    function it_returns_a_single_customer()
+    {
+        $this->assertInstanceOf(
+            Customer::class,
+            $this->rackspace
+                ->customers()
+                ->find($this->customerId)
+        );
+    }
+
+    /**
+     * @test
+     * @throws GuzzleException
+     */
+    function it_returns_a_list_of_mailboxes()
+    {
+        $this->assertTrue(
+            is_object(
+                $this->rackspace
+                    ->mailboxes([
+                        'customerId' => $this->customerId,
+                        'domain' => $this->domain,
+                    ])
+                    ->all()
+            )
         );
     }
 }

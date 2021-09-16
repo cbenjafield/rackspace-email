@@ -10,13 +10,12 @@ class DomainResource extends BaseResource
     /**
      * Return all domains belonging to a customer.
      *
-     * @param int $customerId
      * @return array
      * @throws GuzzleException
      */
-    public function all(int $customerId): array
+    public function all(): array
     {
-        $response = $this->client->getResponse("/customers/$customerId/domains");
+        $response = $this->client->getResponse("/customers/$this->customerId/domains");
 
         return ($response->domains ?? false)
             ? $response['domains']
@@ -26,14 +25,13 @@ class DomainResource extends BaseResource
     /**
      * Return an individual domain.
      *
-     * @param int $customerId
-     * @param string $domain
+     * @param  string  $domain
      * @return Domain|null
      * @throws GuzzleException
      */
-    public function find(int $customerId, string $domain): ?Domain
+    public function find(string $domain): ?Domain
     {
-        $response = $this->client->getResponse("/customers/$customerId/domains/$domain");
+        $response = $this->client->getResponse("/customers/$this->customerId/domains/$domain");
 
         return ($response ?? false)
             ? new Domain($response)

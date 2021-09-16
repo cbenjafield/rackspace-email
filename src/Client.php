@@ -38,7 +38,7 @@ class Client
     protected $timeout;
 
     /**
-     * The Guzzle client.
+     * The Guzzle HTTP client.
      *
      * @var GuzzleClient
      */
